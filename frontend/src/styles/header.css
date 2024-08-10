@@ -1,0 +1,24 @@
+.bg-orange{
+    background-color: #f18500;
+}
+
+.nav-custom{
+    height: 50px;
+}
+
+.logo-bar{
+    background-color: white;
+    height: 70px;
+    border-bottom: 2px solid #f18500;
+}
+
+.link-orange{
+    color:#f18500;
+    text-decoration: none;
+}
+
+.link-orange:hover{
+    text-decoration: underline;
+}
+
+

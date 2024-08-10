@@ -1,0 +1,11 @@
+.product-box{
+    background-color: white;
+    height:600px;
+    border-radius: 15px;
+}
+
+.orange-header{
+    background-color: orange;
+    height: 50px;
+    border-radius: 15px 15px 0 0;
+}
