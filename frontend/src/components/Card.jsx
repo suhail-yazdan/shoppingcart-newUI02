@@ -13,11 +13,11 @@ const Card = () => {
 
         <div className='col-9'>
             <div className='d-flex flex-column left h-100 justify-content-center '>
-                <h4 className='m-0 fw-light'>Natural Organic Banana Juice (500ml)</h4>
+                <h5 className='m-0 fw-light'>Natural Organic Banana Juice (500ml)</h5>
 
-                <h4 className='m-0'><strong>Rs. 69/-</strong></h4>
+                <h5 className='m-0'><strong>Rs. 69/-</strong></h5>
 
-                <div className='card-details'>
+                <div className='card-details mt-2'>
                     <div className='row g-0'>
                         <div className='col-6'>
                             <ul className='card-item-list m-0'>

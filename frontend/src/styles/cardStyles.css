@@ -17,10 +17,14 @@
 }
 
 .card-details .card-item-list{
-    border-right: 1px solid #424242
+    border-right: 1px solid #424242;   
 }
 
-.coutner{
+.card-details .card-item-list li{
+    margin-bottom: 3px;
+}
+
+.counter{
     width: 100%;
 }
 

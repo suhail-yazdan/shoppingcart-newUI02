@@ -1,10 +1,11 @@
-import React from 'react'
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/header.css';
-
-
+import Cart from './Cart'
 
 const Header = () => {
+  const [displayCart, setDisplayCart] = useState(false);
+
   return (
     <header>
       <nav class="nav-custom navbar navbar-expand-lg bg-orange">
@@ -31,14 +32,16 @@ const Header = () => {
             </div>
           </div>
 
-          <div className='sociai-media ms-auto'>
+          <div className='sociai-media ms-auto position-relative'>
             <a href="#">
               <img src="images/search.png" alt="serach icon" className='me-auto ' width="20" />
             </a>
 
-            <a href="#">
+            <a href="#" onClick={() => setDisplayCart(!displayCart)}>
               <img src="images/cart.png" alt="cart icon" className='me-auto ms-3' width="20" />
             </a>
+           
+            {displayCart && <Cart />}
 
             <a href="#">
               <img src="images/Profile-nav.png" alt="serach icon" className='me-auto ms-3' width="20" />
