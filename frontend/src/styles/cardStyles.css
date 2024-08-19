@@ -1,12 +1,12 @@
 .card-custom{
     /* background-color: pink; */
     /* min-width: '700px'; */
+    cursor:pointer
 }
 
-.card-custom .img-box{
+.img-box{
     width: 100%;
     aspect-ratio: 1/1;
-    border-radius: 20px;
     border: 1px solid #d4d4d4;
     background-color: #ffffff;
 }

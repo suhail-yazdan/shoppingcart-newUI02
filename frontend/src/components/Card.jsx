@@ -4,11 +4,14 @@ import "../styles/cardStyles.css"
 
 
 const Card = ({product}) => {
-    const [isProductSelected, setIsProductSelected] = useState(true)
+    const [isProductSelected, setIsProductSelected] = useState(false)
   return (
-    <div className='card-custom row mb-4 mt-2'>
+    <div 
+        className={`card-custom row mb-4 mt-2 bg-info py-3 px-1 rounded-4 ${isProductSelected? "bg-secondary-subtle" : "bg-white"}`}
+        onClick={() => {setIsProductSelected(!isProductSelected)}}
+    >
         <div className='col-3'>
-            <div className='img-box d-flex align-items-center justify-content-center overflow-hidden'>
+            <div className='img-box d-flex align-items-center justify-content-center rounded-3 overflow-hidden'>
                 <img src="./images/banana.png" width="220" alt="banana oil" />
             </div>
         </div>
@@ -16,7 +19,7 @@ const Card = ({product}) => {
         {console.log(product)}
 
         <div className='col-9'>
-            <div className='d-flex flex-column left h-100 justify-content-center '>
+            <div className="d-flex flex-column left h-100 justify-content-center">
                 <h5 className='m-0 fw-light'>{product.name}</h5>
 
                 <h5 className='m-0'><strong>Rs. {product.price}/-</strong></h5>
@@ -34,28 +37,26 @@ const Card = ({product}) => {
                         <div className='col-4'>
                             <div className='counter d-flex flex-column justify-content-center h-100 ms-1'>
                                 {
-                                    isProductSelected &&
+                                    !isProductSelected &&
                                     <button className='btn-orange-pill px-4' onClick={() => {setIsProductSelected(!isProductSelected)}}>
                                         ADD TO CART
                                     </button>
                                 }
                                 
                                 {
-                                    !isProductSelected &&
+                                    isProductSelected &&
                                     (
                                         <>
                                             <div className='counter-qty d-flex align-items-center mx-auto'>
                                                 <button className='rm-btn me-2'>-</button>
-                                                <div className='item-qty'>00</div>
+                                                <div className='item-qty'>1</div>
                                                 <button className='ad-btn ms-2'>+</button>
                                             </div>
 
-                                            <button className='buy-now px-0 ' onClick={() => {setIsProductSelected(!isProductSelected)}}>Remove item</button>
+                                            <button className='buy-now px-0 ' onClick={() => {console.log("item is removed")}}>Remove item</button>
                                         </>
                                     )
-                                }
-
-                                
+                                }                                
                             </div>
                         </div>
                     </div>
