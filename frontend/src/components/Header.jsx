@@ -8,8 +8,8 @@ const Header = () => {
 
   return (
     <header>
-      <nav class="nav-custom navbar navbar-expand-lg bg-orange">
-        <div class="container nav-container">
+      <nav className="nav-custom navbar navbar-expand-lg bg-orange">
+        <div className="container nav-container">
           <div className='contact-info d-flex'>
             <div className='contact-numbers text-white'>
               Call us: +018970010111 / +918970010222

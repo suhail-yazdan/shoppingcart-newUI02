@@ -1,7 +1,8 @@
 .card-custom{
     /* background-color: pink; */
     /* min-width: '700px'; */
-    cursor:pointer
+    cursor:pointer;
+    position: relative;
 }
 
 .img-box{
@@ -53,4 +54,10 @@
     background-color: #ffffff;
     border-radius: 25px;
     border: 2px solid #f18500
+}
+
+.btn-round-orange{
+    position:absolute;
+    top:17px;
+    right:17px;
 }

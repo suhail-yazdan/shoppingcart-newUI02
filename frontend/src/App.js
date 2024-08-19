@@ -62,6 +62,10 @@ function App() {
     }
   ])
 
+  function addProduct() {
+    // console.log("quantity added")
+  }
+
 
   return (
     <div className="App">
@@ -69,7 +73,7 @@ function App() {
       <BreadCrumbs />
       {/* <img src={logo} width="100" /> */}
       <Routes>
-          <Route path="/" element={<Home products={products} />} />
+          <Route path="/" element={<Home products={products} addProduct={addProduct} />} />
           <Route path="/my-account" element={<MyAccount />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/products" element={<Products />} />
