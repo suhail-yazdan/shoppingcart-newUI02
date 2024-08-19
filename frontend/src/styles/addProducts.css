@@ -22,60 +22,7 @@
     border-radius: 15px 15px 0 0;
 }
 
-
 /* Add product section */
-.btn-gray {
-    background-color: #bbbbbb;
-    color: white;
-    border: none;
-    padding:7px 15px;
-    border-radius: 5px;
-}
-
-.btn-gray:hover {
-    background-color: #a3a3a3;
-    color: #ffffff;
-}
-
-
-.btn-orange {
-    background-color: orange;
-    color: white;
-    border: none;
-    padding:7px 15px;
-    border-radius: 5px;
-}
-
-.btn-orange:hover {
-    background-color: #f08903;
-    color: #ffffff;
-}
-
-.btn-orange-small {
-    background-color: orange;
-    color: white;
-    border: none;
-    padding:1px 15px;
-    border-radius: 5px;
-    border: 1px solid orange; 
-}
-
-.btn-orange-small:hover {
-    background-color: #f08903;
-}
-
-.btn-outline-red{
-    background-color: #ffffff;
-    color: red;
-    padding:1px 15px;
-    border-radius: 5px;
-    border: 1px solid red; 
-}
-
-.btn-outline-red:hover{
-    background-color: #ececec;
-}
-
 .media-placeholder{
     border: 2px dashed var(--grey-border);
     height: 200px;

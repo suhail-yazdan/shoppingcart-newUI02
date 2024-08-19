@@ -1,8 +1,10 @@
 import React from 'react'
+import { useState } from 'react'
 import "../styles/cardStyles.css"
 
 
-const Card = () => {
+const Card = ({product}) => {
+    const [isProductSelected, setIsProductSelected] = useState(true)
   return (
     <div className='card-custom row mb-4 mt-2'>
         <div className='col-3'>
@@ -11,34 +13,49 @@ const Card = () => {
             </div>
         </div>
 
+        {console.log(product)}
+
         <div className='col-9'>
             <div className='d-flex flex-column left h-100 justify-content-center '>
-                <h5 className='m-0 fw-light'>Natural Organic Banana Juice (500ml)</h5>
+                <h5 className='m-0 fw-light'>{product.name}</h5>
 
-                <h5 className='m-0'><strong>Rs. 69/-</strong></h5>
+                <h5 className='m-0'><strong>Rs. {product.price}/-</strong></h5>
 
                 <div className='card-details mt-2'>
                     <div className='row g-0'>
                         <div className='col-6'>
-                            <ul className='card-item-list m-0'>
-                                <li>Flavour: Banana</li>
-                                <li>Weight: 500ml</li>
-                                <li>Size: Small</li>
-                                <li>Flavour: Banana</li>
+                            <ul className='card-item-list m-0 me-5'>
+                                <li>Flavour: {product.flavour}</li>
+                                <li>Weight: {product.weight}</li>
+                                <li>Size: {product.size}</li>
                             </ul>
                         </div>
 
-                        <div className='col-6'>
-                            <div className='counter d-flex flex-column'>
-                                <h6 className='text-center m-0'>ADD TO CART</h6>
+                        <div className='col-4'>
+                            <div className='counter d-flex flex-column justify-content-center h-100 ms-1'>
+                                {
+                                    isProductSelected &&
+                                    <button className='btn-orange-pill px-4' onClick={() => {setIsProductSelected(!isProductSelected)}}>
+                                        ADD TO CART
+                                    </button>
+                                }
                                 
-                                <div className='counter-qty d-flex justify-content-between align-items-center mx-auto'>
-                                    <button className='rm-btn'>-</button>
-                                    <div className='item-qty'>00</div>
-                                    <button className='ad-btn'>+</button>
-                                </div>
+                                {
+                                    !isProductSelected &&
+                                    (
+                                        <>
+                                            <div className='counter-qty d-flex align-items-center mx-auto'>
+                                                <button className='rm-btn me-2'>-</button>
+                                                <div className='item-qty'>00</div>
+                                                <button className='ad-btn ms-2'>+</button>
+                                            </div>
 
-                                <button className='buy-now mx-auto'>BUY NOW</button>
+                                            <button className='buy-now px-0 ' onClick={() => {setIsProductSelected(!isProductSelected)}}>Remove item</button>
+                                        </>
+                                    )
+                                }
+
+                                
                             </div>
                         </div>
                     </div>

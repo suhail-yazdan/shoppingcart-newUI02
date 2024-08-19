@@ -18,17 +18,17 @@ const Header = () => {
             <div className='mx-2 text-white'>|</div>
 
             <div className='social-media'>
-              <a href="#">
-                <img src="images/fb-icon.png" alt="facebook icon" className='me-3' width="10" />
-              </a>
+              <Link to="/">
+                <img src="images/fb-icon.png" alt="facebook-icon" className='me-3' width="10" />
+              </Link>
 
-              <a href="#">
-                <img src="images/twitter-icon.png" alt="twitter icon" className='me-3' width="20" />
-              </a>
+              <Link to="/">
+                <img src="images/twitter-icon.png" alt="twitter-icon" className='me-3' width="20" />
+              </Link>
 
-              <a href="#">
-                <img src="images/insta-icon.png" alt="insta icon" className='me-3' width="20" />
-              </a>
+              <Link to="/">
+                <img src="images/insta-icon.png" alt="insta-icon" className='me-3' width="20" />
+              </Link>
             </div>
           </div>
 
@@ -43,9 +43,9 @@ const Header = () => {
            
             {displayCart && <Cart />}
 
-            <a href="#">
+            <Link to="/my-account">
               <img src="images/Profile-nav.png" alt="serach icon" className='me-auto ms-3' width="20" />
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -53,12 +53,16 @@ const Header = () => {
       <div className='logo-bar'>
         <div className='container h-100'>
           <div className='logo-box d-flex h-100 align-items-center justify-content-start'>
-            <img src="images/menu.svg" width="40" />
+            <Link to="/">
+              <img src="images/menu.svg" alt="hamberger-icon" width="40" />
+            </Link>
 
-            <img src="images/logo.png" />
+            <Link to="/">
+              <img src="images/logo.png" alt="sollylush-logo" />
+            </Link>
 
             <div className='ms-auto'>
-              <a href='#' className='link-orange'>Offers</a>
+              <Link to="/offers" className='link-orange'>Offers</Link>
             </div>
           </div>
         </div>
