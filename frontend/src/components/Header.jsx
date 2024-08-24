@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/header.css';
 import Cart from './Cart'
 
-const Header = () => {
+const Header = ({products}) => {
   const [displayCart, setDisplayCart] = useState(false);
 
   return (
@@ -41,7 +41,7 @@ const Header = () => {
               <img src="images/cart.png" alt="cart icon" className='me-auto ms-3' width="20" />
             </a>
            
-            {displayCart && <Cart />}
+            {displayCart && <Cart products={products} />}
 
             <Link to="/my-account">
               <img src="images/Profile-nav.png" alt="serach icon" className='me-auto ms-3' width="20" />

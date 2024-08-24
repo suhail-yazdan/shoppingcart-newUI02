@@ -42,11 +42,15 @@
 }
 
 .counter-qty{
-    width: 110px;
+    width: 150px;
+    /* background-color: pink; */
 }
 
 .item-qty{
     font-size: 2em;
+    /* background-color: yellow; */
+    width: 70px;
+    text-align: center;
 }
 
 .buy-now{
