@@ -3,13 +3,16 @@ import "../styles/cartStyles.css"
 import { MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 
-const Cart = ({products}) => {
+const Cart = ({products, increaseProductQuantity, deSelectProduct}) => {
+
+  const filteredProducts = products.filter(product => product.quantity > 0)
+
   return (
-    <div className='cart position-absolute shadow p-4'>
+    <div className='cart shadow p-4'>
       <h6>Shopping Cart</h6>
 
       <div className='cart-list mb-4 mt-4'>
-        {products.map((product)=>(
+        {filteredProducts.map((product)=>(
           <div className='mt-3'>
             <div className='row g-2 '>
               <div className='col-3'>
@@ -33,9 +36,9 @@ const Cart = ({products}) => {
                   </div>
 
                   <div className='cart-buttons-wrap position-absolute'>
-                    <button className='me-1'><FaPlus /></button>
-                    <div className='mt-1'>3</div>
-                    <button className='ms-auto'><MdDelete /></button>
+                    <button className='me-1' onClick={() => increaseProductQuantity(product)}><FaPlus /></button>
+                    <div className='mt-1'>{product.quantity}</div>
+                    <button className='ms-auto' onClick={() => deSelectProduct(product)}><MdDelete /></button>
                   </div>
                 </div>
               </div>

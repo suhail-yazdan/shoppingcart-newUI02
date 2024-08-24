@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 
-const Home = ({ products, increaseProductQuantity, decreaseProductQuantity, handleAddToCart }) => {
+const Home = ({ products, increaseProductQuantity, decreaseProductQuantity, handleAddToCart, deSelectProduct }) => {
 
     return (
         <>
@@ -15,6 +15,7 @@ const Home = ({ products, increaseProductQuantity, decreaseProductQuantity, hand
                                 increaseProductQuantity={() => increaseProductQuantity(prod)}
                                 decreaseProductQuantity={() => decreaseProductQuantity(prod)} 
                                 handleAddToCart={handleAddToCart}
+                                deSelectProduct ={deSelectProduct}
                             />
                         ))}
                     </div>

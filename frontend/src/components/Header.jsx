@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/header.css';
 import Cart from './Cart'
 
-const Header = ({products}) => {
+const Header = ({products, totalQuantity, increaseProductQuantity, deSelectProduct}) => {
   const [displayCart, setDisplayCart] = useState(false);
+  const cartRef = useRef(null)
+
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if(cartRef.current && !cartRef.current.contains(event.target)) {
+        setDisplayCart(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+  }, [cartRef])
+
 
   return (
-    <header>
+    <header className='bg-info w-100'>
       <nav className="nav-custom navbar navbar-expand-lg bg-orange">
         <div className="container nav-container">
           <div className='contact-info d-flex'>
@@ -37,11 +55,23 @@ const Header = ({products}) => {
               <img src="images/search.png" alt="serach icon" className='me-auto ' width="20" />
             </a>
 
-            <a href="#" onClick={() => setDisplayCart(!displayCart)}>
+            <a href="#" onClick={() => setDisplayCart(!displayCart)} className='position-relative'>
               <img src="images/cart.png" alt="cart icon" className='me-auto ms-3' width="20" />
+              <div className='q-tag position-absolute'>
+                {totalQuantity}
+              </div>
             </a>
            
-            {displayCart && <Cart products={products} />}
+            {displayCart && (
+              <div ref={cartRef} className='cart-wrapper position-absolute'>
+                <Cart 
+                  products={products} 
+                  increaseProductQuantity={increaseProductQuantity} 
+                  deSelectProduct ={deSelectProduct}
+                />
+              </div>
+            )}
+              
 
             <Link to="/my-account">
               <img src="images/Profile-nav.png" alt="serach icon" className='me-auto ms-3' width="20" />

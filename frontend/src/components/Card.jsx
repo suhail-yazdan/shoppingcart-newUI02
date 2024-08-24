@@ -2,15 +2,29 @@ import React, { useState } from 'react';
 import "../styles/cardStyles.css";
 import { IoMdClose } from "react-icons/io";
 
-const Card = ({ prod, increaseProductQuantity, decreaseProductQuantity, handleAddToCart }) => {
+const Card = ({ prod, increaseProductQuantity, decreaseProductQuantity, handleAddToCart, deSelectProduct }) => {
     const [isProductSelected, setIsProductSelected] = useState(false);
     const [productQty, setProductQty] = useState(prod.quantity)
 
-
-
     return (
         <div className={`card-custom mb-4 mt-2 bg-info p-3 rounded-4 ${isProductSelected ? "bg-secondary-subtle" : "bg-white"}`}
-            onClick={() => { setIsProductSelected(true); setProductQty(1)  }}>
+            onClick={() => { setIsProductSelected(true); setProductQty(1) }}>
+
+            {isProductSelected &&
+                <div>
+                    <button
+                        className='btn-round-orange rounded-3'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setIsProductSelected(false);
+                            setProductQty(0)
+                            deSelectProduct(prod)
+                        }}>
+                        <IoMdClose />
+                    </button>
+                </div>
+            }
+
             <div className="row">
                 <div className='col-3'>
                     <div className='img-box d-flex align-items-center justify-content-center rounded-3 overflow-hidden'>
@@ -57,20 +71,6 @@ const Card = ({ prod, increaseProductQuantity, decreaseProductQuantity, handleAd
                     </div>
                 </div>
             </div>
-
-            {isProductSelected &&
-                <div>
-                    <button
-                        className='btn-round-orange rounded-3'
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setIsProductSelected(false);
-                            setProductQty(0)
-                        }}>
-                        <IoMdClose />
-                    </button>
-                </div>
-            }
 
             {/* {console.log(isProductSelected)} */}
         </div>

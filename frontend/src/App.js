@@ -78,23 +78,48 @@ function App() {
       setProducts(updatedProducts)
     }
 
+    function deSelectProduct(prod) {
+        let updatedProducts = products.map(p => 
+            p.pid === prod.pid && p.quantity > 0? {...p, quantity: 0} : p
+        )
+        setProducts(updatedProducts)
+    }
+
+    const filteredProducts = products.filter(product => product.quantity > 0)
+
+    let totalQuantity = 0;
+    filteredProducts.forEach(product => {
+        totalQuantity += product.quantity
+    })
+
     return (
         <div className="App">
-            <Header products={products} />
-            <BreadCrumbs />
-            <Routes>
-                <Route path="/" element={
-                  <Home 
+            <div className="header bg-warning position-fixed w-100">
+                <Header 
                     products={products} 
-                    increaseProductQuantity={increaseProductQuantity}
-                    decreaseProductQuantity={decreaseProductQuantity}
-                    handleAddToCart = {handleAddToCart}
-                  />} 
+                    totalQuantity={totalQuantity} 
+                    increaseProductQuantity={increaseProductQuantity} 
+                    deSelectProduct = {deSelectProduct}
                 />
-                <Route path="/my-account" element={<MyAccount />} />
-                <Route path="/offers" element={<Offers />} />
-                <Route path="/products" element={<Products />} />
-            </Routes>
+            </div>
+
+            <div style={{marginTop: "140px"}}>
+                <BreadCrumbs />
+                <Routes>
+                    <Route path="/" element={
+                    <Home 
+                        products={products} 
+                        increaseProductQuantity={increaseProductQuantity}
+                        decreaseProductQuantity={decreaseProductQuantity}
+                        handleAddToCart = {handleAddToCart}
+                        deSelectProduct = {deSelectProduct}
+                    />} 
+                    />
+                    <Route path="/my-account" element={<MyAccount />} />
+                    <Route path="/offers" element={<Offers />} />
+                    <Route path="/products" element={<Products />} />
+                </Routes>
+            </div>
         </div>
     );
 }

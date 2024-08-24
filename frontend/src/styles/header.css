@@ -1,3 +1,12 @@
+.cart-wrapper{
+    top:33px;
+    right: 0px;
+}
+
+.header{
+    z-index: 1000;
+}
+
 .bg-orange{
     background-color: #f18500;
 }
@@ -19,6 +28,23 @@
 
 .link-orange:hover{
     text-decoration: underline;
+}
+
+.q-tag{
+    background-color: #ff0000;
+    min-width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right:-15px;
+    top:-9px;
+    font-size: 0.6em;
+    color:#ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 7px #ffffff;
+    padding:6px;
+    
 }
 
 
