@@ -13,7 +13,7 @@
 
 .product-content{
     height: 700px;
-    color: var(--text-grey)
+    color: var(--text-grey);
 }
 
 .orange-header{
@@ -45,16 +45,11 @@
     resize: none;
 }
 
+.product-list-wrapper{
+    height: 625px;
+    overflow-y: scroll;
+    padding-right: 15px;
+}
+
 /* Product list section */
 
-.p-details{
-    font-size: small;
-}
-
-.p-image{
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 20px;
-    border: 1px solid #d4d4d4;
-    background-color: #ffffff;
-}

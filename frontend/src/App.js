@@ -1,5 +1,5 @@
 import './styles/appStyles.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -7,6 +7,7 @@ import MyAccount from './pages/MyAccount';
 import Offers from './pages/Offers';
 import Products from './pages/Products';
 import BreadCrumbs from './components/BreadCrumbs';
+import axios from 'axios';
 
 function App() {
     const [products, setProducts] = useState([
@@ -55,6 +56,20 @@ function App() {
             quantity: 0,
         }
     ]);
+
+    useEffect(() => {
+        axios.get('http://localhost:1234/api/products')
+        .then(response => {
+            const updatedProducts = response.data.map(product => ({
+                ...product,
+                pid: product._id,
+            }))
+
+            setProducts(prevProducts =>[...prevProducts, ...updatedProducts])
+
+            console.log("unnndndndn", updatedProducts)
+        })
+    }, [])
 
     function increaseProductQuantity(prod) {
         let updatedProducts = products.map(p =>
@@ -107,17 +122,21 @@ function App() {
                 <BreadCrumbs />
                 <Routes>
                     <Route path="/" element={
-                    <Home 
-                        products={products} 
-                        increaseProductQuantity={increaseProductQuantity}
-                        decreaseProductQuantity={decreaseProductQuantity}
-                        handleAddToCart = {handleAddToCart}
-                        deSelectProduct = {deSelectProduct}
-                    />} 
-                    />
-                    <Route path="/my-account" element={<MyAccount />} />
+                        <Home 
+                            products={products} 
+                            increaseProductQuantity={increaseProductQuantity}
+                            decreaseProductQuantity={decreaseProductQuantity}
+                            handleAddToCart = {handleAddToCart}
+                            deSelectProduct = {deSelectProduct}
+                        />
+                    } />
+                    <Route path="/my-account" element={<MyAccount /> } />
                     <Route path="/offers" element={<Offers />} />
-                    <Route path="/products" element={<Products />} />
+                    <Route path="/products" element={
+                        <Products 
+                            products = {products}
+                        />
+                    } />
                 </Routes>
             </div>
         </div>

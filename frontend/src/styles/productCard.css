@@ -1,0 +1,16 @@
+.p-card{
+    border-bottom: 1px solid #d4d4d4;
+}
+
+
+.p-details{
+    font-size: small;
+}
+
+.p-image{
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    border: 1px solid #d4d4d4;
+    background-color: #ffffff;
+}

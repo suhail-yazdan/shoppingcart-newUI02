@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 7777;
+const PORT = 1234;
 
 // Connect to MongoDB (Make sure your MongoDB server is running)
 // mongoose.connect('mongodb://127.0.0.1:27017/shoppingcartDB', {
@@ -19,7 +19,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/newdb', {
 
 // Enable CORS for all routes
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
