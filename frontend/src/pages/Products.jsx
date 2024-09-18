@@ -1,10 +1,38 @@
-// import { useState } from 'react'
-import React from 'react'
-import "../styles/addProducts.css"
-import ProductCard from "../components/ProductCard"
+import { useState, useEffect } from 'react';
+import React from 'react';
+import "../styles/addProducts.css";
+import ProductCard from "../components/ProductCard";
+import axios from 'axios';
 
-const Products = ({products}) => {
+const Products = () => {
   // const [editMode, setEditMode] = useState(false)
+  const [products, setProducts] = useState([])
+
+  // save a product
+  const [productName, setProductName] = useState('');
+  const [productDescription, setProductDescription] = useState('');
+  const [productFlavour, setProductFlavour] = useState('');
+  const [productCountry, setProductCountry] = useState('');
+  const [productWeight, setProductWeight] = useState('');
+  const [productSize, setProductSize] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:1234/api/products')
+    .then((response) => {
+        setProducts(response.data)
+    })
+  }, [])
+
+  const addProduct = (e) => {
+    e.preventDefault();
+    console.log(productName, productDescription)
+
+  }
+
+
+
+  console.log(products.data)
   return (
     <div className='bg-body-tertiary'>
       <div className='container pt-4 pb-5'>
@@ -16,32 +44,77 @@ const Products = ({products}) => {
               </div>
 
               <div className='product-content w-100 p-4'>
-                <form>
+                <form onSubmit={addProduct}>
                   <div className="mb-3">
-                      <label class="form-label">Media</label>
+                      <label className="form-label">Media</label>
                       <div className="media-placeholder">
                           <button type="button" className="btn-gray">Add a media</button>
                       </div>
                   </div>
 
                   <div className="mb-3">
-                      <label for="productTitle" className="form-label">Product Title</label>
-                      <input type="text" className="form-control" id="productTitle" placeholder="Add product title here" />
+                      <label htmlFor="productTitle" className="form-label">Product Title</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        onChange={(e) => setProductName(e.target.value)}
+                        id="productTitle" 
+                        placeholder="Add product title here" />
                   </div>
 
-                  <div class="mb-3">
-                      <label for="productDescription" className="form-label">Product Description</label>
-                      <textarea className="form-control" id="productDescription" rows="3" placeholder="Add product description here"></textarea>
+                  <div className="mb-3">
+                      <label htmlFor="productDescription" className="form-label">Product Description</label>
+                      <textarea 
+                        className="form-control" 
+                        onChange={(e) => setProductDescription(e.target.value)}
+                        id="productDescription" 
+                        rows="3" 
+                        placeholder="Add product description here"></textarea>
+                  </div>
+
+                  <div className='row mb-3'>
+                    <div className='col-5'>
+                      <label className="form-label">Flavour</label>
+                      <input 
+                        type="text"
+                        className="form-control" />
+                    </div>
+
+                    <div className='col-4'>
+                      <label className="form-label">Country of Origin</label>
+                      <input type="text" className="form-control" />
+                    </div>
+
+                    <div className='col-3'>
+                      <label className="form-label">Weight</label>
+                      <input type="text" className="form-control" />
+                    </div>
+                  </div>
+
+                  <div className='row mb-3'>
+                    <div className='col-3'>
+                      <label className="form-label">Size</label>
+                      <input type="text" className="form-control" />
+                    </div>
+
+                    <div className='col-4'>
+                      <label className="form-label">Product Price</label>
+                      <input type="text" className="form-control" />
+                    </div>
+
+                    <div className='col-3 offset-2 d-flex align-items-end'>
+                      <button type="submit" className="btn-orange">Add product</button>
+                    </div>
                   </div>
                   
-                  <div className="mb-3">
-                    <label for="productPrice" class="form-label">Product Price</label>
+                  {/* <div className="mb-3">
+                    <label for="productPrice" className="form-label">Product Price</label>
 
-                    <div class="product-price d-flex align-items-center justify-content-between"> 
+                    <div className="product-price d-flex align-items-center justify-content-between"> 
                       <input type="number" className="form-control" id="productPrice" placeholder="Add product price here" />
                       <button type="button" className="btn-orange">Add product to list</button>
                     </div>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
@@ -55,70 +128,14 @@ const Products = ({products}) => {
 
               <div className='product-content w-100 p-4 pt-5'>
                 <div className='product-list-wrapper'>
-                {products.map(product => (
-                  <>
-                  <ProductCard product = {product} />
-
-                  {/* {!editMode? (
-                    <div className='p-card mb-4 bg-info'>
-                      <div className='row'>
-                        <div className='col-3'>
-                          <div className='p-image d-flex align-items-center justify-content-center overflow-hidden'>
-                            <img src="./images/banana.png" alt="banana oil" />
-                          </div>
-                        </div>
-
-                        <div className='col-8'>
-                          <h6 className='m-0 fw-light'>{product.name}</h6>
-
-                          <h6 className='m-0'><strong>Rs. {product.price}/-</strong></h6>
-
-                          <div className='p-details'>
-                            <div className='row'>
-                              <div className='col-6'>
-                                <ul className='text-small'>
-                                  <li>Flavour: Banana</li>
-                                  <li>Weight: 500ml</li>
-                                  <li>Size: Small</li>
-                                  <li>Country of Origin: India</li>
-                                </ul>
-                              </div>
-
-                              <div className='col-6'>
-                                <div className='d-flex flex-column align-items-center justify-content-center h-100'>
-                                  <button className='btn-orange-small mb-1' onClick={() => setEditMode(!editMode)}>Edit</button>
-                                  <button className='btn-outline-red mt-1'>Delete</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ):(
-                    <>
-                    
-                    </>
-                  )} */}
-                  
-                  </>
-                ))}
-                
+                  {products.map((product, index) => (
+                    <React.Fragment key={product.id || index}>
+                      <ProductCard product = {product} />
+                    </React.Fragment>
+                  ))}
                 </div>
-                
-
-
-
               </div>
             </div>
-            
-
-
-
-
-
-
-            
           </div>
         </div>
       </div>

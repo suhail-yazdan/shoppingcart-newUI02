@@ -12,7 +12,7 @@
 }
 
 .product-content{
-    height: 700px;
+    height: 675px;
     color: var(--text-grey);
 }
 
@@ -46,7 +46,7 @@
 }
 
 .product-list-wrapper{
-    height: 625px;
+    height: 600px;
     overflow-y: scroll;
     padding-right: 15px;
 }

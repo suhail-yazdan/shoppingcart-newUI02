@@ -25,10 +25,10 @@ const ProductCard = ({product}) => {
                                     <div className='row'>
                                         <div className='col-6'>
                                             <ul className='text-small m-0'>
-                                                <li>Flavour: Banana</li>
-                                                <li>Weight: 500ml</li>
-                                                <li>Size: Small</li>
-                                                <li>Country of Origin: India</li>
+                                                <li>Flavour: {product.flavour}</li>
+                                                <li>Weight: {product.weight}</li>
+                                                <li>Size: {product.size}</li>
+                                                <li>Country of Origin: {product.country}</li>
                                             </ul>
                                         </div>
 
