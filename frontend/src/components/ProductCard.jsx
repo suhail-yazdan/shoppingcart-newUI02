@@ -44,47 +44,47 @@ const ProductCard = ({product}) => {
                         </div>
                     ) : (
                         <>
-                            <div className="row">
-                                <div className="col-9">
-                                    <div className='w-100 d-flex flex-column'>
-                                        <form className='me-4`'>
-                                            <input type="text" 
-                                                className='form-control py-1 px-2 w-75' 
-                                                // value={productName}
-                                                // onChange={handleProductNameChange}
-                                                />
-
-                                            <textarea 
-                                                className="form-control mt-2 py-1 px-2" 
-                                                rows="3" 
-                                                // value={productDescription}
-                                                // onChange={handleProductDescriptionChange}
-                                                >
-                                            </textarea>
-
-                                            <input type="text" 
-                                                placeholder='Price' 
-                                                className='form-control py-1 px-2 w-50 mt-2'
-                                                // onChange={handleProductPriceChange}
-                                                // value={productPrice}
+                        <div className="row">
+                            <div className="col-9">
+                                <div className='w-100 d-flex flex-column'>
+                                    <form className='me-4`'>
+                                        <input type="text" 
+                                            className='form-control py-1 px-2 w-75' 
+                                            // value={productName}
+                                            // onChange={handleProductNameChange}
                                             />
-                                        </form>
-                                    </div>
-                                </div>
 
-                                <div className="col-3">
-                                    <div className='d-flex flex-column align-items-end justify-content-end h-100'>
-                                        <button className='btn-secondary btn px-3 py-1' 
-                                            // onClick={() =>{updateProduct()}}
-                                            >Save</button>
+                                        <textarea 
+                                            className="form-control mt-2 py-1 px-2" 
+                                            rows="3" 
+                                            // value={productDescription}
+                                            // onChange={handleProductDescriptionChange}
+                                            >
+                                        </textarea>
 
-                                        <button className='btn-secondary btn px-3 py-1 mt-2' 
-                                            // onClick={() => {setEditMode(!editMode); handleOriginalData() }}
-                                            onClick={() => setEditMode(!editMode)}
-                                            >Cancel</button>
-                                    </div>
+                                        <input type="text" 
+                                            placeholder='Price' 
+                                            className='form-control py-1 px-2 w-50 mt-2'
+                                            // onChange={handleProductPriceChange}
+                                            // value={productPrice}
+                                        />
+                                    </form>
                                 </div>
                             </div>
+
+                            <div className="col-3">
+                                <div className='d-flex flex-column align-items-end justify-content-end h-100'>
+                                    <button className='btn-secondary btn px-3 py-1' 
+                                        // onClick={() =>{updateProduct()}}
+                                        >Save</button>
+
+                                    <button className='btn-secondary btn px-3 py-1 mt-2' 
+                                        // onClick={() => {setEditMode(!editMode); handleOriginalData() }}
+                                        onClick={() => setEditMode(!editMode)}
+                                        >Cancel</button>
+                                </div>
+                            </div>
+                        </div>
                         </>
                     )
                 }

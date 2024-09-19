@@ -24,13 +24,49 @@ const Products = () => {
     })
   }, [])
 
+  const updateProductList = () => {
+    // updating the product list
+    axios.get('http://localhost:1234/api/products')
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const addProduct = (e) => {
     e.preventDefault();
     console.log(productName, productDescription)
+    const data = {
+      "name": productName,
+      "desc": productDescription,
+      "flavour": productFlavour,
+      "country": productCountry,
+      "weight": productWeight,
+      "size": productSize,
+      "price": productPrice
+    }
 
+    axios
+    .post('http://localhost:1234/api/products', data)
+    .then(() => {
+      updateProductList();
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+    // Reset the form fields
+    setProductName('');
+    setProductDescription('');
+    setProductPrice('');
+    setProductFlavour('');
+    setProductCountry('');
+    setProductWeight('');
+    setProductSize('');
+    setProductPrice('')
   }
-
-
 
   console.log(products.data)
   return (
@@ -59,7 +95,8 @@ const Products = () => {
                         className="form-control" 
                         onChange={(e) => setProductName(e.target.value)}
                         id="productTitle" 
-                        placeholder="Add product title here" />
+                        placeholder="Add product title here"
+                      />
                   </div>
 
                   <div className="mb-3">
@@ -74,32 +111,55 @@ const Products = () => {
 
                   <div className='row mb-3'>
                     <div className='col-5'>
-                      <label className="form-label">Flavour</label>
+                      <label htmlFor="productFlavour" className="form-label">Flavour</label>
                       <input 
                         type="text"
-                        className="form-control" />
+                        className="form-control"
+                        onChange={(e) => setProductFlavour(e.target.value)}
+                        id="productFlavour"
+                      />
                     </div>
 
                     <div className='col-4'>
-                      <label className="form-label">Country of Origin</label>
-                      <input type="text" className="form-control" />
+                      <label htmlFor="productCountry" className="form-label">Country of Origin</label>
+                      <input 
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductCountry(e.target.value)}
+                        id="productCountry"
+                      />
                     </div>
 
                     <div className='col-3'>
-                      <label className="form-label">Weight</label>
-                      <input type="text" className="form-control" />
+                      <label htmlFor="productWeight" className="form-label">Weight</label>
+                      <input 
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductWeight(e.target.value)}
+                        id="productWeight"
+                      />
                     </div>
                   </div>
 
                   <div className='row mb-3'>
                     <div className='col-3'>
-                      <label className="form-label">Size</label>
-                      <input type="text" className="form-control" />
+                      <label htmlFor='productSize' className="form-label">Size</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductSize(e.target.value)}
+                        id="productSize"
+                      />
                     </div>
 
                     <div className='col-4'>
-                      <label className="form-label">Product Price</label>
-                      <input type="text" className="form-control" />
+                      <label htmlFor="productPrice" className="form-label">Product Price</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductPrice(e.target.value)}
+                        id="productPrice"
+                      />
                     </div>
 
                     <div className='col-3 offset-2 d-flex align-items-end'>
