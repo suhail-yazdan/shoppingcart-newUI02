@@ -99,7 +99,66 @@ const Products = () => {
                       />
                   </div>
 
-                  <div className="mb-3">
+                  <div className='row mb-3'>
+                    <div className='col-3'>
+                      <label htmlFor="productPrice" className="form-label">Product Price</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductPrice(e.target.value)}
+                        id="productPrice"
+                        placeholder='Price'
+                      />
+                    </div>
+
+                    <div className='col-5'>
+                      <label htmlFor="productFlavour" className="form-label">Flavour</label>
+                      <input 
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductFlavour(e.target.value)}
+                        id="productFlavour"
+                        placeholder='Product Flavour'
+                      />
+                    </div>
+                    
+                    <div className='col-4'>
+                      <label htmlFor="productWeight" className="form-label">Weight</label>
+                      <input 
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductWeight(e.target.value)}
+                        id="productWeight"
+                        placeholder="Product Weight"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className='row mb-3'>
+                    <div className='col-4'>
+                      <label htmlFor="productCountry" className="form-label">Country of Origin</label>
+                      <input 
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductCountry(e.target.value)}
+                        id="productCountry"
+                        placeholder="Country of Origin"
+                      />
+                    </div>
+
+                    <div className='col-3'>
+                      <label htmlFor='productSize' className="form-label">Size</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setProductSize(e.target.value)}
+                        id="productSize"
+                        placeholder="Product Size"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
                       <label htmlFor="productDescription" className="form-label">Product Description</label>
                       <textarea 
                         className="form-control" 
@@ -110,59 +169,7 @@ const Products = () => {
                   </div>
 
                   <div className='row mb-3'>
-                    <div className='col-5'>
-                      <label htmlFor="productFlavour" className="form-label">Flavour</label>
-                      <input 
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setProductFlavour(e.target.value)}
-                        id="productFlavour"
-                      />
-                    </div>
-
-                    <div className='col-4'>
-                      <label htmlFor="productCountry" className="form-label">Country of Origin</label>
-                      <input 
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setProductCountry(e.target.value)}
-                        id="productCountry"
-                      />
-                    </div>
-
-                    <div className='col-3'>
-                      <label htmlFor="productWeight" className="form-label">Weight</label>
-                      <input 
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setProductWeight(e.target.value)}
-                        id="productWeight"
-                      />
-                    </div>
-                  </div>
-
-                  <div className='row mb-3'>
-                    <div className='col-3'>
-                      <label htmlFor='productSize' className="form-label">Size</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setProductSize(e.target.value)}
-                        id="productSize"
-                      />
-                    </div>
-
-                    <div className='col-4'>
-                      <label htmlFor="productPrice" className="form-label">Product Price</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setProductPrice(e.target.value)}
-                        id="productPrice"
-                      />
-                    </div>
-
-                    <div className='col-3 offset-2 d-flex align-items-end'>
+                    <div className='col-3 offset-9 d-flex align-items-end'>
                       <button type="submit" className="btn-orange">Add product</button>
                     </div>
                   </div>
@@ -189,9 +196,12 @@ const Products = () => {
               <div className='product-content w-100 p-4 pt-5'>
                 <div className='product-list-wrapper'>
                   {products.map((product, index) => (
-                    <React.Fragment key={product.id || index}>
-                      <ProductCard product = {product} />
-                    </React.Fragment>
+                      <ProductCard 
+                        key = {product._id}
+                        product = {product}
+                        // deleteProduct = {() => deleteProduct(product._id)}
+                        updateProductList={updateProductList}
+                      />
                   ))}
                 </div>
               </div>
