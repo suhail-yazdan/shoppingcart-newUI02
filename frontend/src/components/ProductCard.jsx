@@ -16,15 +16,10 @@ const ProductCard = (props) => {
 
     const productID = props.product._id
 
-    // const data = {
-    //     "name": productName,
-    //     "desc": productDescription,
-    //     "flavour": productFlavour,
-    //     "country": productCountry,
-    //     "weight": productWeight,
-    //     "size": productSize,
-    //     "price": productPrice
-    //   }
+    console.log("props product", props.product)
+
+
+
 
     const updateProduct = async () => {
         const productData = {
@@ -111,8 +106,8 @@ const ProductCard = (props) => {
 
                                         <div className='col-6'>
                                             <div className='d-flex flex-column align-items-end justify-content-end h-100'>
-                                                <button className='btn-orange-small mb-1' onClick={() => setEditMode(!editMode)}>Edit</button>
-                                                <button className='btn-outline-red mt-1'>Delete</button>
+                                                <button className='btn-orange-small mb-1' onClick={() => {setEditMode(!editMode); console.log("dddfff", productWeight)}}>Edit</button>
+                                                <button className='btn-outline-red mt-1' onClick={props.deleteProduct}>Delete</button>
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +197,7 @@ const ProductCard = (props) => {
                                 </div>
                             </div>
 
-                            <div className="col-2 bg-primary">
+                            <div className="col-2">
                                 <div className='d-flex flex-column align-items-end justify-content-end h-100'>
                                     <button className='btn-secondary btn btn-sm px-2 py-1 rounded-2' 
                                         onClick={() =>{updateProduct()}}

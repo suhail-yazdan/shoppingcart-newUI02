@@ -30,7 +30,11 @@ app.use((req, res, next) => {
 // Create a mongoose model for the Product
 const Product = mongoose.model('Product', {
   name: String,
-  details: String,
+  desc: String,
+  flavour: String,
+  country: String,
+  weight: Number,
+  size: String,
   price: Number,
 });
 
@@ -49,8 +53,8 @@ app.get('/', async (req, res) => {
 // Create a new product
 app.post('/api/products', async (req, res) => {
   try {
-    const { name, details, price } = req.body;
-    const product = new Product({ name, details, price });
+    const { name, desc, flavour, country, weight, size, price } = req.body;
+    const product = new Product({ name, desc, flavour, country, weight, size, price });
     await product.save();
     res.json(product);
   } catch (error) {
@@ -84,10 +88,10 @@ app.get('/api/products/:id', async (req, res) => {
 // Update a product by ID
 app.put('/api/products/:id', async (req, res) => {
   try {
-    const { name, details, price } = req.body;
+    const { name, desc, flavour, country, weight, size, price } = req.body;
     const product = await Product.findByIdAndUpdate(
       req.params.id,
-      { name, details, price },
+      { name, desc, flavour, country, weight, size, price },
       { new: true }
     );
     if (!product) {

@@ -37,7 +37,7 @@ const Products = () => {
 
   const addProduct = (e) => {
     e.preventDefault();
-    console.log(productName, productDescription)
+    // console.log(productName, productDescription)
     const data = {
       "name": productName,
       "desc": productDescription,
@@ -68,7 +68,22 @@ const Products = () => {
     setProductPrice('')
   }
 
+  const deleteProduct = (id) => {
+    console.log(id)
+    
+    axios
+      .delete(`http://localhost:1234/api/products/${id}`)
+      .then(() => {
+        // updating the product list
+        updateProductList();
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+  }
+
   console.log(products.data)
+
   return (
     <div className='bg-body-tertiary'>
       <div className='container pt-4 pb-5'>
@@ -93,6 +108,7 @@ const Products = () => {
                       <input 
                         type="text" 
                         className="form-control" 
+                        value={productName} 
                         onChange={(e) => setProductName(e.target.value)}
                         id="productTitle" 
                         placeholder="Add product title here"
@@ -105,6 +121,7 @@ const Products = () => {
                       <input
                         type="text"
                         className="form-control"
+                        value={productPrice}
                         onChange={(e) => setProductPrice(e.target.value)}
                         id="productPrice"
                         placeholder='Price'
@@ -116,6 +133,7 @@ const Products = () => {
                       <input 
                         type="text"
                         className="form-control"
+                        value={productFlavour}
                         onChange={(e) => setProductFlavour(e.target.value)}
                         id="productFlavour"
                         placeholder='Product Flavour'
@@ -127,6 +145,7 @@ const Products = () => {
                       <input 
                         type="text"
                         className="form-control"
+                        value={productWeight}
                         onChange={(e) => setProductWeight(e.target.value)}
                         id="productWeight"
                         placeholder="Product Weight"
@@ -140,6 +159,7 @@ const Products = () => {
                       <input 
                         type="text"
                         className="form-control"
+                        value={productCountry}
                         onChange={(e) => setProductCountry(e.target.value)}
                         id="productCountry"
                         placeholder="Country of Origin"
@@ -151,6 +171,7 @@ const Products = () => {
                       <input
                         type="text"
                         className="form-control"
+                        value={productSize}
                         onChange={(e) => setProductSize(e.target.value)}
                         id="productSize"
                         placeholder="Product Size"
@@ -161,7 +182,8 @@ const Products = () => {
                   <div className="mb-4">
                       <label htmlFor="productDescription" className="form-label">Product Description</label>
                       <textarea 
-                        className="form-control" 
+                        className="form-control"
+                        value={productDescription} 
                         onChange={(e) => setProductDescription(e.target.value)}
                         id="productDescription" 
                         rows="3" 
@@ -169,19 +191,10 @@ const Products = () => {
                   </div>
 
                   <div className='row mb-3'>
-                    <div className='col-3 offset-9 d-flex align-items-end'>
+                    <div className='col-12 d-flex align-items-end'>
                       <button type="submit" className="btn-orange">Add product</button>
                     </div>
                   </div>
-                  
-                  {/* <div className="mb-3">
-                    <label for="productPrice" className="form-label">Product Price</label>
-
-                    <div className="product-price d-flex align-items-center justify-content-between"> 
-                      <input type="number" className="form-control" id="productPrice" placeholder="Add product price here" />
-                      <button type="button" className="btn-orange">Add product to list</button>
-                    </div>
-                  </div> */}
                 </form>
               </div>
             </div>
@@ -199,7 +212,7 @@ const Products = () => {
                       <ProductCard 
                         key = {product._id}
                         product = {product}
-                        // deleteProduct = {() => deleteProduct(product._id)}
+                        deleteProduct = {() => deleteProduct(product._id)}
                         updateProductList={updateProductList}
                       />
                   ))}
