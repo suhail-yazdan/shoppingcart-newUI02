@@ -33,7 +33,7 @@ const Product = mongoose.model('Product', {
   desc: String,
   flavour: String,
   country: String,
-  weight: Number,
+  weight: String,
   size: String,
   price: Number,
 });

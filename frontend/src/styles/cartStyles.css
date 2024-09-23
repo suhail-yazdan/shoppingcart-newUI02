@@ -22,10 +22,31 @@
     align-items: end;
 }
 
-.cart-buttons-wrap{
-    width: 90px;
+.cart-buttons{
+    width: 78px;
     right: 10px;
     bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4px;
+    color:#cccccc;
+}
+
+.cart-buttons button{
+    padding: 0;
+    background: none;
+    border: none;
+    color: #cccccc;
+}
+
+.delete-button{
+    width: 40px;
+    right: 10px;
+    top: 5px;
     border-radius: 5px;
     border: 1px solid #cccccc;
     font-size: 1.3em;
@@ -35,7 +56,7 @@
     color:#cccccc;
 }
 
-.cart-buttons-wrap button{
+.delete-button button{
     padding: 0;
     background: none;
     border: none;

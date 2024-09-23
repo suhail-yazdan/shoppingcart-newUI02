@@ -1,11 +1,13 @@
 import React from 'react'
 import "../styles/cartStyles.css"
 import { MdDelete } from "react-icons/md";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 
-const Cart = ({products, increaseProductQuantity, deSelectProduct}) => {
+const Cart = ({products, increaseProductQuantity, decreaseProductQuantity, deSelectProduct}) => {
 
   const filteredProducts = products.filter(product => product.quantity > 0)
+
+  const totalQuantity = filteredProducts.reduce((acc, product) => acc + product.price, 0);
 
   return (
     <div className='cart shadow p-4'>
@@ -35,9 +37,13 @@ const Cart = ({products, increaseProductQuantity, deSelectProduct}) => {
                     </div>
                   </div>
 
-                  <div className='cart-buttons-wrap position-absolute'>
+                  <div className='cart-buttons position-absolute'>
                     <button className='me-1' onClick={() => increaseProductQuantity(product)}><FaPlus /></button>
                     <div className='mt-1'>{product.quantity}</div>
+                    <button className='ms-1 me-1' onClick={() => decreaseProductQuantity(product)}><FaMinus /></button>
+                  </div>
+
+                  <div className='delete-button position-absolute'>
                     <button className='ms-auto' onClick={() => deSelectProduct(product)}><MdDelete /></button>
                   </div>
                 </div>
@@ -47,7 +53,7 @@ const Cart = ({products, increaseProductQuantity, deSelectProduct}) => {
         ))}
       </div>
 
-      <h6>Subtotal: <strong>Rs. 150/-</strong></h6>
+      <h6>Subtotal: <strong>{totalQuantity}</strong></h6>
       <button className='btn-orange'>Proceed to Checkout</button>
     </div>
   )

@@ -88,7 +88,7 @@ const Products = () => {
     <div className='bg-body-tertiary'>
       <div className='container pt-4 pb-5'>
         <div className='row'>
-          <div className='col-6'>
+          <div className='col-12 col-sm-12 col-md-8 offset-md-2 col-xl-6 offset-xl-0 mt-xl-0'>
             <div className='product-box shadow-sm'>
               <div className='orange-header d-flex align-items-center px-4 fw-semibold text-white'>
                 ADD PRODUCTS
@@ -200,7 +200,7 @@ const Products = () => {
             </div>
           </div>
 
-          <div className='col-6'>
+          <div className='col-12 col-sm-12 col-md-8 offset-md-2 mt-md-5 offset-xl-0 col-xl-6 mt-xl-0'>
             <div className='product-box shadow-sm'>
               <div className='orange-header d-flex align-items-center px-4 fw-semibold text-white'>
                 CURRENT PROUCT LIST

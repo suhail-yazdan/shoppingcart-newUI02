@@ -63,11 +63,12 @@ function App() {
             const updatedProducts = response.data.map(product => ({
                 ...product,
                 pid: product._id,
+                quantity:0
             }))
 
             setProducts(prevProducts =>[...prevProducts, ...updatedProducts])
 
-            console.log("unnndndndn", updatedProducts)
+            // console.log("unnndndndn", updatedProducts)
         })
     }, [])
 
@@ -113,7 +114,8 @@ function App() {
                 <Header 
                     products={products} 
                     totalQuantity={totalQuantity} 
-                    increaseProductQuantity={increaseProductQuantity} 
+                    increaseProductQuantity={increaseProductQuantity}
+                    decreaseProductQuantity={decreaseProductQuantity} 
                     deSelectProduct = {deSelectProduct}
                 />
             </div>

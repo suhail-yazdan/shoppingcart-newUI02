@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/header.css';
 import Cart from './Cart'
 
-const Header = ({products, totalQuantity, increaseProductQuantity, deSelectProduct}) => {
+const Header = ({products, totalQuantity, increaseProductQuantity, decreaseProductQuantity, deSelectProduct}) => {
   const [displayCart, setDisplayCart] = useState(false);
   const cartRef = useRef(null)
 
@@ -51,9 +51,9 @@ const Header = ({products, totalQuantity, increaseProductQuantity, deSelectProdu
           </div>
 
           <div className='sociai-media ms-auto position-relative'>
-            <a href="#">
+            <Link to="/">
               <img src="images/search.png" alt="serach icon" className='me-auto ' width="20" />
-            </a>
+            </Link>
 
             <a href="#" onClick={() => setDisplayCart(!displayCart)} className='position-relative'>
               <img src="images/cart.png" alt="cart icon" className='me-auto ms-3' width="20" />
@@ -66,7 +66,8 @@ const Header = ({products, totalQuantity, increaseProductQuantity, deSelectProdu
               <div ref={cartRef} className='cart-wrapper position-absolute'>
                 <Cart 
                   products={products} 
-                  increaseProductQuantity={increaseProductQuantity} 
+                  increaseProductQuantity={increaseProductQuantity}
+                  decreaseProductQuantity={decreaseProductQuantity}
                   deSelectProduct ={deSelectProduct}
                 />
               </div>
