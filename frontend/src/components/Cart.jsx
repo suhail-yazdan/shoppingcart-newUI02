@@ -1,17 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "../styles/cartStyles.css"
 import { MdDelete } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 
 const Cart = ({products, increaseProductQuantity, decreaseProductQuantity, deSelectProduct}) => {
 
+  const [totalPrice, setTotalPrice] = useState(0)
+  
   const filteredProducts = products.filter(product => product.quantity > 0)
 
-  const totalQuantity = filteredProducts.reduce((acc, product) => acc + product.price, 0);
+  // console.log("filtered-products", filteredProducts)
+
+  useEffect(() => {
+    let total = 0;
+    for(let i=0; i<filteredProducts.length; i++){
+      total += filteredProducts[i].price*filteredProducts[i].quantity
+    }
+    setTotalPrice(total)
+  }, [filteredProducts])
 
   return (
     <div className='cart shadow p-4'>
       <h6>Shopping Cart</h6>
+      <small className='text-danger'>for only 10 products</small>
 
       <div className='cart-list mb-4 mt-4'>
         {filteredProducts.map((product)=>(
@@ -33,7 +44,7 @@ const Cart = ({products, increaseProductQuantity, decreaseProductQuantity, deSel
                     </div>
 
                     <div>
-                      <strong>Rs. {product.price}/-</strong>
+                      <strong>Rs. {(product.price)*(product.quantity)}/-</strong>
                     </div>
                   </div>
 
@@ -53,7 +64,7 @@ const Cart = ({products, increaseProductQuantity, decreaseProductQuantity, deSel
         ))}
       </div>
 
-      <h6>Subtotal: <strong>{totalQuantity}</strong></h6>
+      <h6>Subtotal: <strong>{totalPrice}</strong></h6>
       <button className='btn-orange'>Proceed to Checkout</button>
     </div>
   )
