@@ -16,6 +16,7 @@ const Products = () => {
   const [productWeight, setProductWeight] = useState('');
   const [productSize, setProductSize] = useState('');
   const [productPrice, setProductPrice] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
 
   useEffect(() => {
     axios.get('http://localhost:1234/api/products')
@@ -66,6 +67,7 @@ const Products = () => {
     setProductWeight('');
     setProductSize('');
     setProductPrice('')
+    setSelectedImage(null); // Reset image selection
   }
 
   const deleteProduct = (id) => {
@@ -84,6 +86,15 @@ const Products = () => {
 
   console.log(products.data)
 
+  // Handle image selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file); // Create a URL to display the image
+      setSelectedImage(imageUrl); // Store the image URL in state
+    }
+  }
+
   return (
     <div className='bg-body-tertiary'>
       <div className='container pt-4 pb-5'>
@@ -99,7 +110,25 @@ const Products = () => {
                   <div className="mb-3">
                       <label className="form-label">Media</label>
                       <div className="media-placeholder">
-                          <button type="button" className="btn-gray">Add a media</button>
+                        {!selectedImage && (
+                          <>
+                            <input type="file" accept="image/*" 
+                              onChange={handleImageChange}
+                              style={{ display: 'none' }} 
+                              id="file-input"
+                            />
+                            <button type="button" 
+                              className="btn-gray"
+                              onClick={() => document.getElementById('file-input').click()}
+                            >Add a media</button>
+                          </>
+                        )}
+
+                          {selectedImage && (
+                            <div className="selected-image mt-3">
+                              <img src={selectedImage} alt="Selected" />
+                            </div>
+                          )}
                       </div>
                   </div>
 
