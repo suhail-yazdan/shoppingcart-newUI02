@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import "../styles/addProducts.css";
 import ProductCard from "../components/ProductCard";
+import { ImCross } from "react-icons/im";
 import axios from 'axios';
 
 const Products = () => {
@@ -16,7 +17,8 @@ const Products = () => {
   const [productWeight, setProductWeight] = useState('');
   const [productSize, setProductSize] = useState('');
   const [productPrice, setProductPrice] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
+  const [productImage, setProductImage] = useState(null); // State to store the selected image
+  const [imagePicker, setImagePicker] = useState(false); // State to toggle image picker
 
   useEffect(() => {
     axios.get('http://localhost:1234/api/products')
@@ -36,6 +38,12 @@ const Products = () => {
       });
   }
 
+  // let fileInput = document.getElementById("file-input");
+  // let file = fileInput.files[0];
+
+  // let filename = file.name
+
+
   const addProduct = (e) => {
     e.preventDefault();
     // console.log(productName, productDescription)
@@ -46,8 +54,11 @@ const Products = () => {
       "country": productCountry,
       "weight": productWeight,
       "size": productSize,
-      "price": productPrice
+      "price": productPrice,
+      "url": productImage
     }
+
+    console.log("data - ", data)
 
     axios
     .post('http://localhost:1234/api/products', data)
@@ -67,7 +78,7 @@ const Products = () => {
     setProductWeight('');
     setProductSize('');
     setProductPrice('')
-    setSelectedImage(null); // Reset image selection
+    setProductImage(null); // Reset image selection
   }
 
   const deleteProduct = (id) => {
@@ -87,13 +98,45 @@ const Products = () => {
   console.log(products.data)
 
   // Handle image selection
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file); // Create a URL to display the image
-      setSelectedImage(imageUrl); // Store the image URL in state
-    }
-  }
+
+  const productImages = [
+    '/product-images/almond-buttur.jpg',
+    '/product-images/herbal-green-tea.jpg',
+    '/product-images/multi-flora-honey.jpg',
+    '/product-images/natural-coconut-oil.jpg',
+    '/product-images/organic-herbal-paste.jpg',
+    '/product-images/quinoa-flour.jpg',
+    '/product-images/turmeric-honey.jpg',
+    '/product-images/apple.jpg',
+    '/product-images/natural-honey.jpg',
+    '/product-images/natural-soup.jpg',
+  ];
+
+  const handleImageSelect = (imageUrl) => {
+    setProductImage(imageUrl);  // Set the selected image URL
+    console.log('Selected image URL:', imageUrl);
+  };
+
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+
+  //   if(file){
+  //     const fileName = file.name;
+      
+  //     const relativeUrl = `/product-images/${fileName}`;
+
+  //     setProductImage(relativeUrl)
+
+  //     console.log('Relative image file URL:', relativeUrl);
+  //   }
+
+  //   // if (file) {
+  //   //   const imageUrl = URL.createObjectURL(file); // Create a URL to display the image
+  //   //   setProductImage(imageUrl); // Store the image URL in state
+  //   // }
+
+  //   // console.log('image file url - ', file)
+  // }
 
   return (
     <div className='bg-body-tertiary'>
@@ -110,7 +153,7 @@ const Products = () => {
                   <div className="mb-3">
                       <label className="form-label">Media</label>
                       <div className="media-placeholder">
-                        {!selectedImage && (
+                        {/* {!productImage && (
                           <>
                             <input type="file" accept="image/*" 
                               onChange={handleImageChange}
@@ -122,11 +165,70 @@ const Products = () => {
                               onClick={() => document.getElementById('file-input').click()}
                             >Add a media</button>
                           </>
-                        )}
+                        )} */}
 
-                          {selectedImage && (
-                            <div className="selected-image mt-3">
-                              <img src={selectedImage} alt="Selected" />
+                          {!productImage && (
+                            <>
+                              <button
+                                type="button"
+                                className="btn-gray"
+                                onClick={() => {
+                                  setImagePicker(true)
+                                }}
+                              >
+                                Add a media
+                              </button>
+
+                              {imagePicker && (
+                                <div id="image-picker" className='image-picker'>
+                                  <button 
+                                    className='close-btn'
+                                    onClick={() => setImagePicker(false)}>
+                                    <ImCross />
+                                  </button>
+
+                                  <h3>Select a product Image</h3>
+
+                                  <div className="image-grid">
+                                    {productImages.map((image, index) => (
+                                      <div
+                                        key={index}
+                                        className="image-item"
+                                        onClick={() => handleImageSelect(image)}
+                                      >
+                                        <img src={image} alt={`product ${image} `} style={{cursor:"pointer"}} />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}                      
+
+                          {productImage && (
+                            <div className="selected-image">
+                              <img src={productImage} alt="Selected" />
+                             
+                              {/* <button className='close-btn'
+                                onClick={() => {setProductImage(null)}}
+                              > <ImCross /></button> */}
+
+                              <button 
+                                className='close-btn'
+                                onClick={() => setImagePicker(false)}
+                                style={{top: "10px", right: "15px"}}
+                                >
+                                <ImCross />
+                              </button>
+
+                              <button className='close-btn' style={{padding:"6px 25px", bottom: "10px", right: "15px"}}
+                                onClick={() => {setProductImage(null)}}
+                              >
+                                Change Image
+                              </button>
+
+
+
                             </div>
                           )}
                       </div>

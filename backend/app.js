@@ -36,6 +36,7 @@ const Product = mongoose.model('Product', {
   weight: String,
   size: String,
   price: Number,
+  url: String,
 });
 
 // Middleware to parse JSON requests
@@ -52,9 +53,12 @@ app.get('/', async (req, res) => {
 
 // Create a new product
 app.post('/api/products', async (req, res) => {
+  console.log(req)
   try {
-    const { name, desc, flavour, country, weight, size, price } = req.body;
-    const product = new Product({ name, desc, flavour, country, weight, size, price });
+    const { name, desc, flavour, country, weight, size, price, url } = req.body;
+
+    const product = new Product({ name, desc, flavour, country, weight, size, price, url });
+    
     await product.save();
     res.json(product);
   } catch (error) {
@@ -88,10 +92,11 @@ app.get('/api/products/:id', async (req, res) => {
 // Update a product by ID
 app.put('/api/products/:id', async (req, res) => {
   try {
-    const { name, desc, flavour, country, weight, size, price } = req.body;
+    const { name, desc, flavour, country, weight, size, price, url } = req.body;
+
     const product = await Product.findByIdAndUpdate(
       req.params.id,
-      { name, desc, flavour, country, weight, size, price },
+      { name, desc, flavour, country, weight, size, price, url },
       { new: true }
     );
     if (!product) {
@@ -120,6 +125,14 @@ app.delete('/api/products/:id', async (req, res) => {
 app.post('/api/products/bulk', async (req, res) => {
   try {
       const products = req.body;
+
+      products = products.map(product => {
+        return{
+          ...product,
+          url: `/product-images/${product.url}`
+        }
+      })
+
       const insertedProducts = await Product.insertMany(products);
       res.json(insertedProducts);
   } catch (error) {

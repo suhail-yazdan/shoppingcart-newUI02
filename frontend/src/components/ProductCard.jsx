@@ -13,10 +13,11 @@ const ProductCard = (props) => {
     const [productSize, setProductSize] = useState(props.product.size);
     const [productCountry, setProductCountry] = useState(props.product.country);
     const [productDescription, setProductDescription] = useState(props.product.desc);
+    const [productUrl, setProductUrl] = useState(props.product.url)
 
     const productID = props.product._id
 
-    console.log("props product", props.product)
+    console.log("props product", productUrl)
 
 
 
@@ -29,13 +30,14 @@ const ProductCard = (props) => {
             "country": productCountry,
             "weight": productWeight,
             "size": productSize,
-            "price": productPrice
+            "price": productPrice,
+            "url": productUrl
         }
 
         axios
             .put(`http://localhost:1234/api/products/${productID}`, productData)
             .then((response) => {
-                console.log("Product updated successfully", response.data)
+                // console.log("Product updated successfully", response.data)
                 props.updateProductList()
                 setEditMode(!editMode)
             })
@@ -84,7 +86,9 @@ const ProductCard = (props) => {
                         <div className='row'>
                             <div className='col-3'>
                                 <div className='p-image d-flex align-items-center justify-content-center overflow-hidden'>
-                                    <img src="./images/banana.png" alt="banana oil" />
+                                    {/* <img src="./images/banana.png" alt="banana oil" /> */}
+                                    <img src={productUrl} alt={productUrl} />
+                                    {/* {console.log("Product URL", productUrl)} */}
                                 </div>
                             </div>
 
