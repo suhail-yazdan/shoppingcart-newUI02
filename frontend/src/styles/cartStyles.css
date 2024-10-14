@@ -10,6 +10,11 @@
     aspect-ratio: 1/1;
     background-color: orange;
     border-radius: 10px;
+    overflow: hidden;
+}
+
+.cart-p-image img{
+    width: 100%;
 }
 
 .cart-info{

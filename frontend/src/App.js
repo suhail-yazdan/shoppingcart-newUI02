@@ -12,6 +12,18 @@ import axios from 'axios';
 function App() {
     const [products, setProducts] = useState([
         {
+            pid: 4,
+            name: "Organic Green Tea",
+            desc: "Green Tea Leaves",
+            price: 99,
+            flavour: "classic",
+            weight: "200g",
+            size: "small",
+            country: "China",
+            quantity: 0,
+            url: '/product-images/herbal-green-tea.jpg'
+        },
+        {
             pid: 1,
             name: "Strawberry Shake",
             desc: "Finest Strawberries, Milk, Sugar",
@@ -19,8 +31,9 @@ function App() {
             flavour: "strawberry flavour",
             weight: "4.5kg",
             size: "full",
-            country: "Japan",
-            quantity: 0
+            country: "India",
+            quantity: 0,
+            url: '/product-images/natural-honey.jpg'
         },
         {
             pid: 2,
@@ -30,8 +43,9 @@ function App() {
             flavour: "almond flavour",
             weight: "1L",
             size: "medium",
-            country: "USA",
+            country: "Uzbekistan",
             quantity: 0,
+            url: '/product-images/organic-herbal-paste.jpg'
         },
         {
             pid: 3,
@@ -43,17 +57,7 @@ function App() {
             size: "small",
             country: "New Zealand",
             quantity: 0,
-        },
-        {
-            pid: 4,
-            name: "Organic Green Tea",
-            desc: "Green Tea Leaves",
-            price: 99,
-            flavour: "classic",
-            weight: "200g",
-            size: "small",
-            country: "China",
-            quantity: 0,
+            url: '/product-images/multi-flora-honey.jpg'
         }
     ]);
 

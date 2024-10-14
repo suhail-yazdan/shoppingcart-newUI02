@@ -22,14 +22,16 @@ const Cart = ({products, increaseProductQuantity, decreaseProductQuantity, deSel
   return (
     <div className='cart shadow p-4'>
       <h6>Shopping Cart</h6>
-      <small className='text-danger'>for only 10 products</small>
+      <small className='text-danger'>Maximum 10 items per product</small>
 
       <div className='cart-list mb-4 mt-4'>
         {filteredProducts.map((product)=>(
           <div className='mt-3'>
             <div className='row g-2 '>
               <div className='col-3'>
-                <div className='cart-p-image'></div>
+                <div className='cart-p-image'>
+                  <img src={product.url} alt={product.name} />
+                </div>
               </div>
 
               <div className='col-9'>

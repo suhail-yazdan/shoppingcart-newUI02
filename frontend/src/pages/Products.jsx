@@ -58,7 +58,7 @@ const Products = () => {
       "url": productImage
     }
 
-    console.log("data - ", data)
+    // console.log("data - ", data)
 
     axios
     .post('http://localhost:1234/api/products', data)
@@ -95,7 +95,7 @@ const Products = () => {
       })
   }
 
-  console.log(products.data)
+  // console.log(products.data)
 
   // Handle image selection
 
@@ -117,26 +117,6 @@ const Products = () => {
     console.log('Selected image URL:', imageUrl);
   };
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-
-  //   if(file){
-  //     const fileName = file.name;
-      
-  //     const relativeUrl = `/product-images/${fileName}`;
-
-  //     setProductImage(relativeUrl)
-
-  //     console.log('Relative image file URL:', relativeUrl);
-  //   }
-
-  //   // if (file) {
-  //   //   const imageUrl = URL.createObjectURL(file); // Create a URL to display the image
-  //   //   setProductImage(imageUrl); // Store the image URL in state
-  //   // }
-
-  //   // console.log('image file url - ', file)
-  // }
 
   return (
     <div className='bg-body-tertiary'>
@@ -153,20 +133,6 @@ const Products = () => {
                   <div className="mb-3">
                       <label className="form-label">Media</label>
                       <div className="media-placeholder">
-                        {/* {!productImage && (
-                          <>
-                            <input type="file" accept="image/*" 
-                              onChange={handleImageChange}
-                              style={{ display: 'none' }} 
-                              id="file-input"
-                            />
-                            <button type="button" 
-                              className="btn-gray"
-                              onClick={() => document.getElementById('file-input').click()}
-                            >Add a media</button>
-                          </>
-                        )} */}
-
                           {!productImage && (
                             <>
                               <button

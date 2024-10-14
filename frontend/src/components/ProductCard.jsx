@@ -17,10 +17,7 @@ const ProductCard = (props) => {
 
     const productID = props.product._id
 
-    console.log("props product", productUrl)
-
-
-
+    // console.log("props product", productUrl)
 
     const updateProduct = async () => {
         const productData = {
@@ -51,44 +48,10 @@ const ProductCard = (props) => {
             <div className='p-card mb-4 p-3 pb-5'>
                 {!editMode ? (
                     <>
-                        {/* <div className="row">
-                            <div className="col-9">
-                                <div className="row">
-                                    <div className='col-3'>
-                                        <div className='p-image d-flex align-items-center justify-content-center overflow-hidden'>
-                                            <img src="./images/banana.png" alt="banana oil" />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-9">
-                                        <h6 className='m-0 fw-light'>{productName}</h6>
-
-                                        <h6 className='m-0'><strong>Rs. {productPrice}/-</strong></h6>
-
-                                        <ul className='text-small m-0'>
-                                            <li>Flavour: {productFlavour}</li>
-                                            <li>Weight: {productWeight}</li>
-                                            <li>Size: {productSize}</li>
-                                            <li>Country of Origin: {productCountry}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-3">
-                                <div className='d-flex flex-column align-items-end justify-content-end h-100'>
-                                    <button className='btn-orange-small mb-1' onClick={() => setEditMode(!editMode)}>Edit</button>
-                                    <button className='btn-outline-red mt-1'>Delete</button>
-                                </div>
-                            </div>
-                        </div> */}
-                        
                         <div className='row'>
                             <div className='col-3'>
                                 <div className='p-image d-flex align-items-center justify-content-center overflow-hidden'>
-                                    {/* <img src="./images/banana.png" alt="banana oil" /> */}
-                                    <img src={productUrl} alt={productUrl} />
-                                    {/* {console.log("Product URL", productUrl)} */}
+                                    <img src={productUrl} alt={productName} />
                                 </div>
                             </div>
 
@@ -168,8 +131,6 @@ const ProductCard = (props) => {
                                         </div>
 
                                         <div className="row mb-3">
- 
-
                                             <div className="col-9">
                                                 <input type="text" 
                                                     className='form-control py-1 px-2 mt-2' 
@@ -204,13 +165,11 @@ const ProductCard = (props) => {
                             <div className="col-2">
                                 <div className='d-flex flex-column align-items-end justify-content-end h-100'>
                                     <button className='btn-secondary btn btn-sm px-2 py-1 rounded-2' 
-                                        onClick={() =>{updateProduct()}}
-                                        >Update</button>
+                                        onClick={() =>{updateProduct()}}>Update</button>
 
                                     <button className='btn-secondary btn btn-sm px-2 py-1 mt-2 rounded-2' 
                                         // onClick={() => {setEditMode(!editMode); handleOriginalData() }}
-                                        onClick={() => setEditMode(!editMode)}
-                                        >Cancel</button>
+                                        onClick={() => setEditMode(!editMode)}>Cancel</button>
                                 </div>
                             </div>
                         </div>
